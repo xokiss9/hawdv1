@@ -1,0 +1,326 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: black;
+    min-height: 100vh;
+}
+
+body {
+    font-family: 'Barlow Condensed', system-ui, sans-serif;
+    perspective: 800px;
+    background: black;
+    color: white;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+}
+
+.nav-brand {
+    position: relative;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    z-index: 1001;
+    padding-right: 2rem;
+}
+
+.nav-logo {
+    height: 100px;
+    width: auto;
+    filter: drop-shadow(0 0 2px rgba(255,0,255,0.3));
+    position: relative;
+    transform: translateY(-10%);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.nav-links a:last-child {
+    background: rgba(128, 128, 128, 0.3);
+}
+
+.nav-links a:last-child:hover {
+    background: rgba(128, 128, 128, 0.4);
+    box-shadow: 0 0 15px rgba(169, 169, 169, 0.5);
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    min-height: 100vh;
+    margin: 1rem 0;
+    position: relative;
+}
+
+.container:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--color1),
+        var(--color7),
+        var(--color1),
+        transparent
+    );
+    filter: drop-shadow(0 0 5px var(--color1));
+}
+
+.content {
+    flex: 1;
+    text-align: center;
+    max-width: 500px;
+}
+
+:root {
+    --color1: #92f2f2;
+    --color2: #d6cff1;
+    --color3: #c4f2e5;
+    --color4: #a8d0f0;
+    --color5: #c2dcf2;
+    --color6: #eed5f2;
+    --color7: #9cb9fc;
+    --transparent: rgba(255, 255, 255, 0);
+}
+
+.content h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 0.9;
+    background: linear-gradient(
+        110deg,
+        var(--color1),
+        var(--color2),
+        var(--color3),
+        var(--color4),
+        var(--color6),
+        var(--color7),
+        var(--color1)
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 8px rgba(146, 242, 242, 0.2));
+    position: relative;
+    animation: smoothHolo 12s linear infinite;
+}
+
+.content h1::before {
+    display: none;
+}
+
+.content h2 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    margin: 0.5rem 0;
+    text-transform: uppercase;
+    color: white;
+    line-height: 0.9;
+}
+
+.content p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 2rem 0;
+    opacity: 0.9;
+    max-width: 500px;
+    letter-spacing: 0.02em;
+}
+
+.card {
+    font-weight: bold;
+    padding: 1em;
+    text-align: right;
+    color: #181a1a;
+    
+    width: 400px;
+    height: 550px;
+    
+    border-radius: 10px;
+    background-image: url("claude3_hero_1.png");
+    background-size: cover;
+    background-position: center;
+    
+    position: relative;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(0) rotateY(0) scale(1);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    
+    transition: box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+.robot-image {
+    width: 400px;
+    height: 700px;
+    border-radius: 0px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card .glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    pointer-events: none;
+    will-change: background;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.coming-soon {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white;
+    opacity: 0.7;
+    letter-spacing: 0.2em;
+    text-align: center;
+    width: 100%;
+    padding: 0 1rem;
+    z-index: 100;
+}
+
+.toast-container {
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    pointer-events: none;
+    z-index: 999999;
+    will-change: transform;
+}
+
+.toast-notification {
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-align: center;
+    min-width: 200px;
+}
+
+.toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#comingSoonToast {
+    transform: translateY(-100%);
+}
+
+#comingSoonToast.show {
+    transform: translateY(0);
+}
+
+.toast-notification::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: black;
+    border-radius: 10px;
+    z-index: -1;
+    opacity: 0.3;
+    animation: borderGlow 2s linear infinite;
+}
+
+@keyframes borderGlow {
+    0% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes smoothHolo {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 300% 50%;
+    }
+} 
