@@ -16,8 +16,9 @@
         <div class="nav-brand"><img src="logo.png" alt="Logo" class="nav-logo"></div>
         <div class="nav-links">
             <a href="#" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
             <button id="tokenButton" class="nav-link">$hawd</button>
-            <a href="#" class="nav-link">Reserve</a>
+            <a href="#" class="nav-link">JOIN QUEUE</a>
         </div>
     </nav>
 
@@ -44,7 +45,7 @@
         <div class="card">
             <div class="glow"></div>
         </div>
-        <div class="content">
+        <div id="about" class="content">
             <h1>ANTHROPIC BASED</h1>
             <p>Our agents will be based on the most advanced AI models available from Anthropic, like Claude.</p>
         </div>
@@ -55,6 +56,12 @@
     <script>
         // Prevent right click on the entire website
         document.addEventListener('contextmenu', e => e.preventDefault());
+        
+        // Smooth scroll for About link
+        document.querySelector('a[href="#about"]').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        });
         
         const cards = document.querySelectorAll('.card');
         
@@ -113,21 +120,23 @@
 
         // Add click handlers for all nav links except token button
         document.querySelectorAll('.nav-link:not(#tokenButton)').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default navigation
-                
-                comingSoonToast.classList.remove('show');
-                void comingSoonToast.offsetWidth;
-                comingSoonToast.classList.add('show');
-                
-                if (comingSoonTimeout) {
-                    clearTimeout(comingSoonTimeout);
-                }
-                
-                comingSoonTimeout = setTimeout(() => {
+            if (link.textContent === 'JOIN QUEUE') {  // Only show coming soon for JOIN QUEUE
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Prevent default navigation
+                    
                     comingSoonToast.classList.remove('show');
-                }, 2000);
-            });
+                    void comingSoonToast.offsetWidth;
+                    comingSoonToast.classList.add('show');
+                    
+                    if (comingSoonTimeout) {
+                        clearTimeout(comingSoonTimeout);
+                    }
+                    
+                    comingSoonTimeout = setTimeout(() => {
+                        comingSoonToast.classList.remove('show');
+                    }, 2000);
+                });
+            }
         });
 
         tokenButton.addEventListener('click', async () => {
